@@ -8,6 +8,7 @@ export * from './lib/get-entities/get-entities.directive';
 export * from './lib/get-entity/get-entity.module';
 export * from './lib/get-entity/get-entity.model';
 export * from './lib/get-entity/get-entity.directive';
+export * from './lib/entity-service/entity.service';
 export * from './lib/functions/baseUniq';
 export * from './lib/functions/baseUniqueBy';
 export * from './lib/functions/clearNull';
