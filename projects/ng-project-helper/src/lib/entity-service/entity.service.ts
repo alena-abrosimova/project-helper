@@ -6,14 +6,15 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { prepareObjectToPlain } from '../functions/toClassToPlain';
+import { generateQuery } from '../functions/generateQuery';
 
 
 function getUrl(url: string, id: number, path: string): string {
-  if (path) {
-    return `${url}/${id}/${path}/`;
-  }
+  url = url ? `${url}/` : '';
+  const strId = id ? `${id}/` : '';
+  path = path ? `${path}/` : '';
 
-  return `${url}/${id}/`;
+  return `${url}${strId}${path}`;
 }
 
 @Injectable({
@@ -22,6 +23,13 @@ function getUrl(url: string, id: number, path: string): string {
 export class EntityService {
 
   constructor(private http: HttpClient) {
+  }
+
+  getEntity<T>(params: object, url: string, cls: ClassType<T>, id?: number, path?: string): Observable<T> {
+    return this.http.get(`${getUrl(url, id, path)}`, {params: generateQuery(params)})
+      .pipe(
+        map(response => plainToClass(cls, response))
+      );
   }
 
   createEntity<T>(item: Partial<T>, url: string, cls: ClassType<T>): Observable<T> {
