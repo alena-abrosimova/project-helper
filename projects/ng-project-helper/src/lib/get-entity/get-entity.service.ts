@@ -14,11 +14,12 @@ export class GetEntityService {
   }
 
   getUrls(apiParams: EntityApiParams): string {
-    if (apiParams.path) {
-      return `${apiParams.api}/${apiParams.dir}/${apiParams.id}/${apiParams.path}/`;
-    }
+    const api: string = apiParams.api ? `${apiParams.api}/` : '';
+    const dir: string = apiParams.dir ? `${apiParams.dir}/` : '';
+    const id: string = apiParams.id ? `${apiParams.id}/` : '';
+    const path: string = apiParams.path ? `${apiParams.path}/` : '';
 
-    return `${apiParams.api}/${apiParams.dir}/${apiParams.id}/`;
+    return `${api}${dir}${id}${path}`;
   }
 
   getEntity<T>(apiParams: EntityApiParams): Observable<T> {
