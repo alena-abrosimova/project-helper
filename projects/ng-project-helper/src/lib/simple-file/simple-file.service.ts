@@ -13,7 +13,7 @@ import { printFile } from '../functions/printFile';
   providedIn: 'root'
 })
 
-export class FileServiceService {
+export class SimpleFileService {
 
   constructor(private http: HttpClient) { }
 
