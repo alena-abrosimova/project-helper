@@ -1,0 +1,72 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { prepareAndDownloadFile } from '../functions/prepareAndDownloadFile';
+import { openFileInNewTab } from '../functions/openFileInNewTab';
+import { openFileInCard } from '../functions/openFileInCard';
+import { generateQuery } from '../functions/generateQuery';
+import { printFile } from '../functions/printFile';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class FileServiceService {
+
+  constructor(private http: HttpClient) { }
+
+  downloadFileByUrl(fileUrl: string): void {
+    const anchor = document.createElement('a');
+    document.body.appendChild(anchor);
+    anchor.download = 'export.json';
+    if (location.protocol === 'https:') {
+      fileUrl = fileUrl.replace('http://', 'https://');
+    }
+    anchor.href = fileUrl;
+    anchor.target = '_self';
+    anchor.click();
+    anchor.remove();
+  }
+
+  downloadFile(url: string, type: string, filters?: object): Observable<Blob> {
+    const params: HttpParams = generateQuery(filters);
+
+    return this.http
+      .get(url, { params, responseType: 'blob', observe: 'response' })
+      .pipe(
+        map(response => prepareAndDownloadFile(response, type))
+      );
+  }
+
+  openFileInCard(url: string, filters?: object): Observable<string> {
+    const params: HttpParams = generateQuery(filters);
+
+    return this.http
+      .get(url, { params, responseType: 'blob', observe: 'response' })
+      .pipe(
+        map(response => openFileInCard(response))
+      );
+  }
+
+  openFileInNewTab(url: string, type: string, filters?: object): Observable<Blob> {
+    const params: HttpParams = generateQuery(filters);
+
+    return this.http
+      .get(url, { params, responseType: 'blob', observe: 'response' })
+      .pipe(
+        map(response => openFileInNewTab(response, type))
+      );
+  }
+
+  printFile(url: string, type: string, filters?: object): Observable<Blob> {
+    const params: HttpParams = generateQuery(filters);
+
+    return this.http
+      .get(url, { params, responseType: 'blob', observe: 'response' })
+      .pipe(
+        map(response => printFile(response, type))
+      );
+  }
+}

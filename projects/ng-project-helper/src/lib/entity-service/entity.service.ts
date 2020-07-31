@@ -1,21 +1,14 @@
-import { Injectable } from '@angular/core';
-import { ClassType } from 'class-transformer/ClassTransformer';
-import { plainToClass } from 'class-transformer';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ClassType} from 'class-transformer/ClassTransformer';
+import {plainToClass} from 'class-transformer';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
-import { prepareObjectToPlain } from '../functions/toClassToPlain';
-import { generateQuery } from '../functions/generateQuery';
+import {prepareObjectToPlain} from '../functions/toClassToPlain';
+import {generateQuery} from '../functions/generateQuery';
+import {getFullUrl} from '../functions/getFullUrl';
 
-
-function getUrl(url: string, id: number, path: string): string {
-  url = url ? `${url}/` : '';
-  const strId = id ? `${id}/` : '';
-  path = path ? `${path}/` : '';
-
-  return `${url}${strId}${path}`;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +19,7 @@ export class EntityService {
   }
 
   getEntity<T>(params: object, url: string, cls: ClassType<T>, id?: number, path?: string): Observable<T> {
-    return this.http.get(`${getUrl(url, id, path)}`, {params: generateQuery(params)})
+    return this.http.get(`${getFullUrl(url, id, path)}`, {params: generateQuery(params)})
       .pipe(
         map(response => plainToClass(cls, response))
       );
@@ -40,14 +33,14 @@ export class EntityService {
   }
 
   updateEntity<T>(item: Partial<T>, id: number, url: string, cls: ClassType<T>, path?: string): Observable<T> {
-    return this.http.patch(`${getUrl(url, id, path)}`, prepareObjectToPlain<T>(item, cls))
+    return this.http.patch(`${getFullUrl(url, id, path)}`, prepareObjectToPlain<T>(item, cls))
       .pipe(
         map(response => plainToClass(cls, response))
       );
   }
 
   deleteEntity(id: number, url: string, path?: string): Observable<boolean> {
-    return this.http.delete(`${getUrl(url, id, path)}`)
+    return this.http.delete(`${getFullUrl(url, id, path)}`)
       .pipe(
         map(() => true)
       );

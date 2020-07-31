@@ -21,3 +21,4 @@ export * from './lib/functions/setParamsToStorage';
 export * from './lib/functions/toClassToPlain';
 export * from './lib/functions/uniq';
 export * from './lib/functions/uniqBy';
+export {getFullUrl} from './lib/functions/getFullUrl';
