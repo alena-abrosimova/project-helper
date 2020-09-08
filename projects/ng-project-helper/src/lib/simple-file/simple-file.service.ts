@@ -8,6 +8,8 @@ import { openFileInNewTab } from '../functions/openFileInNewTab';
 import { openFileInCard } from '../functions/openFileInCard';
 import { generateQuery } from '../functions/generateQuery';
 import { printFile } from '../functions/printFile';
+import { ClassType } from 'class-transformer/ClassTransformer';
+import { plainToClass } from 'class-transformer';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class SimpleFileService {
   downloadFileByUrl(fileUrl: string): void {
     const anchor = document.createElement('a');
     document.body.appendChild(anchor);
-    anchor.download = 'export.json';
+    anchor.download = fileUrl.substring((fileUrl.lastIndexOf('/') + 1), fileUrl.length);
     if (location.protocol === 'https:') {
       fileUrl = fileUrl.replace('http://', 'https://');
     }
@@ -70,11 +72,12 @@ export class SimpleFileService {
       );
   }
 
-  uploadFile<T>(url: string, formData: FormData): Observable<T> {
+  uploadFile<T>(url: string, formData: FormData, cls?: ClassType<T>): Observable<T> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
 
     return this.http
-      .post<T>(`${url}`, formData, { headers });
+      .post<T>(`${url}`, formData, { headers })
+      .pipe(map(result => cls ? plainToClass(cls, result) : result));
   }
 }
