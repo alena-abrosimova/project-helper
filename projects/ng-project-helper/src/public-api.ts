@@ -10,6 +10,7 @@ export * from './lib/get-entity/get-entity.model';
 export * from './lib/get-entity/get-entity.directive';
 export * from './lib/entity-service/entity.service';
 export * from './lib/simple-file/simple-file.service';
+export * from './lib/simple-http/simple-http.service';
 export * from './lib/functions/baseUniq';
 export * from './lib/functions/baseUniqueBy';
 export * from './lib/functions/clearNull';
