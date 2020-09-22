@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { generateQuery } from '../functions/generateQuery';
+import { map } from 'rxjs/operators';
 
 
 function getUrl(url: string, id: number | string, path: string): string {
@@ -32,7 +33,8 @@ export class SimpleHttpService {
     return this.http.patch<T>(getUrl(url, id, path), item);
   }
 
-  delete<T>(url: string, id: number | string, path?: string): Observable<T> {
-    return this.http.delete<T>(getUrl(url, id, path));
+  delete(url: string, id: number | string, path?: string): Observable<boolean> {
+    return this.http.delete(getUrl(url, id, path))
+      .pipe(map(() => true));
   }
 }
