@@ -1,3 +1,3 @@
-export function baseUniqueBy<K>(value, index, self, iteratee: string) {
-  return self.indexOf(item => item[iteratee] === value[iteratee]) === index;
+export function baseUniqueBy<T>(value: T, index: number, self: T[], iteratee: string) {
+  return self.findIndex(item => item[iteratee] === value[iteratee]) === index;
 }
