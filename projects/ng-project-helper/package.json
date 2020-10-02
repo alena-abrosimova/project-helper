@@ -1,6 +1,6 @@
 {
   "name": "ng-project-helper",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "peerDependencies": {
     "@angular/common": "~10.0.3",
     "@angular/core": "~10.0.3"
