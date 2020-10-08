@@ -1,6 +1,5 @@
 export class EntityApiParams {
-  constructor(public api: string,
-              public dir: string,
+  constructor(public url: string,
               public id: number,
               public path?: string) {
   }

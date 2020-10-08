@@ -1,6 +1,5 @@
 export class EntitiesParams {
-  constructor(public api: string,
-              public dir: string,
+  constructor(public url: string,
               public params?: any,
               public field?: string,
               public iteratee?: string) {
@@ -8,8 +7,8 @@ export class EntitiesParams {
 }
 
 export interface IDefaultResponse<T> {
-  count: number,
-  next: string,
-  previous: string,
-  results: Array<T>
+  count: number;
+  next: string;
+  previous: string;
+  results: Array<T>;
 }

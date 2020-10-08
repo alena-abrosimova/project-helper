@@ -62,7 +62,7 @@ export class GetEntitiesDirective<T> implements OnChanges {
   getDictionary(): Observable<T[]> {
     const params = this.getDictionaryParams();
 
-    return this.getEntitiesService.getEntities<T>(this.entitiesParams.api, this.entitiesParams.dir, params)
+    return this.getEntitiesService.getEntities<T>(this.entitiesParams.url, params)
       .pipe(
         debounceTime(500),
         map((response: IDefaultResponse<T>) => this.prepareAndEmitResponse(response))
