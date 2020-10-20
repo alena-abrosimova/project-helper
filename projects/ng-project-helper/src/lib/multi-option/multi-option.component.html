@@ -1,0 +1,5 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" *ngIf="parent.multiple">
+  <button mat-stroked-button color="primary"
+          (click)="selectUnselect()">{{noOptions ? 'Выделить всё' : 'Снять всё'}}</button>
+  <button mat-stroked-button color="primary" (click)="parent.close()">Выбрать</button>
+</div>

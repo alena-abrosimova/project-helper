@@ -1,0 +1,9 @@
+{
+  "bundlerOptions": {
+    "entryFile": "./projects/ng-project-helper/src/lib/style.scss",
+    "rootDir":"./projects/ng-project-helper/src/lib/",
+    "outFile": "./dist/ng-project-helper/lib/style.scss",
+    "ignoreImports": ["~@angular/.*"],
+    "logLevel": "silent"
+  }
+}

@@ -1,0 +1,44 @@
+.system-option {
+  padding: 4px 8px !important;
+  flex-direction: column !important;
+  align-items: inherit !important;
+  position: sticky !important;
+  z-index: 1;
+  background: inherit;
+
+  &.top {
+    top: 0 !important;
+  }
+
+  &.bot {
+    bottom: 0 !important;
+  }
+
+  &.none {
+    display: none !important;
+  }
+
+  .no-items-row {
+    height: 48px;
+    padding: 12px;
+    font-style: italic;
+    color: #6b6b6b;
+  }
+
+  &.mat-selected, &:hover {
+    background: inherit !important;
+  }
+}
+
+.simple-field {
+  margin-bottom: 0 !important;
+
+  .mat-form-field-wrapper, .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.edited-option {
+  padding-right: 8px !important;
+}

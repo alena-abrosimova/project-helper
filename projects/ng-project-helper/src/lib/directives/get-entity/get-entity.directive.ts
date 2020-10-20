@@ -2,7 +2,7 @@ import { Directive, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { Observable } from 'rxjs';
 import { EntityApiParams } from './get-entity.model';
 import { GetEntityService } from './get-entity.service';
-import { isOnChanges } from '../functions/isOnChanges';
+import { isOnChanges } from '../../functions/isOnChanges';
 import { tap } from 'rxjs/operators';
 
 @Directive({

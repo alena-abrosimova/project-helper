@@ -1,0 +1,17 @@
+<div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+  <mat-form-field class="simple-field" appearance="outline" fxFlex>
+    <input matInput type="text" [placeholder]="placeholder" [formControl]="control" stopPropagation
+           autocomplete="nope" (keydown.space)="$event.stopPropagation()">
+    <mat-icon matPrefix color="primary">search</mat-icon>
+    <button mat-icon-button matSuffix color="primary" *ngIf="control.value" (click)="control.setValue('')">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-icon-button color="primary" stopPropagation matTooltip="Добавить" matTooltipClass="default-tooltip"
+          (click)="setItemSubject()" *ngIf="withAdd">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div fxLayout="row" class="no-items-row" fxLayoutAlign="center center" *ngIf="noOptions">
+  <span>Нет данных</span>
+</div>

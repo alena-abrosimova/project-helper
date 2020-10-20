@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "start-lib": "ng build ng-project-helper --watch",
+    "scss-bundle": "scss-bundle --config projects/ng-project-helper/scss-bundle.config.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -13,14 +14,19 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.3",
+    "@angular/cdk": "^10.0.1",
     "@angular/common": "~10.0.3",
     "@angular/compiler": "~10.0.3",
     "@angular/core": "~10.0.3",
+    "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "~10.0.3",
+    "@angular/material": "^10.0.1",
     "@angular/platform-browser": "~10.0.3",
     "@angular/platform-browser-dynamic": "~10.0.3",
     "@angular/router": "~10.0.3",
+    "@ngneat/until-destroy": "^7.3.2",
     "class-transformer": "^0.2.3",
+    "date-fns": "^2.14.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

@@ -1,0 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px" class="edited-option">
+  <span fxFlex><ng-content></ng-content></span>
+  <button mat-icon-button color="primary" stopPropagation matTooltip="Редактировать"
+          matTooltipClass="default-tooltip" (click)="setItemSubject()">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

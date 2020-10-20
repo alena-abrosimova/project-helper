@@ -3,10 +3,10 @@ import { debounceTime, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { EntitiesParams, IDefaultResponse } from './get-entities.model';
-import { isCancelSearch } from '../functions/isCanselSearch';
+import { isCancelSearch } from '../../functions/isCanselSearch';
 import { GetEntitiesService } from './get-entities.service';
-import { isOnChanges } from '../functions/isOnChanges';
-import { concatArray } from '../functions/concatArray';
+import { isOnChanges } from '../../functions/isOnChanges';
+import { concatArray } from '../../functions/concatArray';
 
 
 @Directive({

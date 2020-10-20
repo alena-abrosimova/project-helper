@@ -4,7 +4,10 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "class-transformer": "classTransformer"
+      "@ngneat/until-destroy": "untilDestroy",
+      "class-transformer": "classTransformer",
+      "date-fns": "dateFns",
+      "date-fns/locale": "locale"
     }
   }
 }
