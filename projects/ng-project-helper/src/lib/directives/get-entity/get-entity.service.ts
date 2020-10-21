@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { EntityApiParams } from './get-entity.model';
+import { EntityApiParams, EntityParams } from './get-entity.model';
+import { generateQuery } from '../../functions/generateQuery';
+import { genParams } from '../../functions/genParams';
 
 
 @Injectable({
@@ -22,6 +24,7 @@ export class GetEntityService {
   }
 
   getEntity<T>(apiParams: EntityApiParams): Observable<T> {
-    return this.http.get<T>(this.getUrls(apiParams));
+    const params: HttpParams = generateQuery(genParams<EntityParams>(apiParams.params));
+    return this.http.get<T>(this.getUrls(apiParams), {params});
   }
 }
