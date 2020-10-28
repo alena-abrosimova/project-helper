@@ -1,15 +1,91 @@
-/*
- * Public API Surface of ng-project-helper
- */
+export * from './lib/base-table/base-table.component';
+export * from './lib/base-table/base-table.module';
+export * from './lib/base-table/base-table.service';
 
-export * from './lib/base-table/public-api';
-export * from './lib/confirm-dialog/public-api';
-export * from './lib/directives/public-api';
-export * from './lib/edited-option/public-api';
-export * from './lib/functions/public-api';
-export * from './lib/models/public-api';
-export * from './lib/multi-option/public-api';
-export * from './lib/pipes/public-api';
-export * from './lib/search-option/public-api';
-export * from './lib/servises/public-api';
-export * from './lib/public-api';
+export * from './lib/confirm-dialog/confirm-dialog.component';
+export * from './lib/confirm-dialog/confirm-dialog.module';
+export * from './lib/confirm-dialog/confirm-dialog.service';
+
+export * from './lib/directives/control-error/control-error.data';
+export * from './lib/directives/control-error/control-error.directive';
+export * from './lib/directives/control-error/control-error.module';
+export * from './lib/directives/default-equal/default-equal.directive';
+export * from './lib/directives/default-equal/default-equal.module';
+export * from './lib/directives/get-entities/get-entities.directive';
+export * from './lib/directives/get-entities/get-entities.model';
+export * from './lib/directives/get-entities/get-entities.module';
+export * from './lib/directives/get-entities/get-entities.service';
+export * from './lib/directives/get-entity/get-entity.directive';
+export * from './lib/directives/get-entity/get-entity.model';
+export * from './lib/directives/get-entity/get-entity.module';
+export * from './lib/directives/get-entity/get-entity.service';
+export * from './lib/directives/hide-password/hide-password.directive';
+export * from './lib/directives/hide-password/hide-password.module';
+export * from './lib/directives/stop-propagation/stop-propagation.directive';
+export * from './lib/directives/stop-propagation/stop-propagation.module';
+
+export * from './lib/edited-option/edited-option.component';
+export * from './lib/edited-option/edited-option.module';
+
+export * from './lib/functions/baseUniq';
+export * from './lib/functions/baseUniqueBy';
+export * from './lib/functions/classTransform';
+export * from './lib/functions/clearNull';
+export * from './lib/functions/cloneArray';
+export * from './lib/functions/cloneObject';
+export * from './lib/functions/cloneParams';
+export * from './lib/functions/concatArray';
+export * from './lib/functions/concatMatrix';
+export * from './lib/functions/dateToString';
+export * from './lib/functions/genEntitiesParams';
+export * from './lib/functions/generateQuery';
+export * from './lib/functions/genParams';
+export * from './lib/functions/genParamsForTable';
+export * from './lib/functions/getFullUrl';
+export * from './lib/functions/getParamsFromStorage';
+export * from './lib/functions/getRusPaginatorIntl';
+export * from './lib/functions/isCanselSearch';
+export * from './lib/functions/isOnChanges';
+export * from './lib/functions/isOverlap';
+export * from './lib/functions/openFileInCard';
+export * from './lib/functions/openFileInNewTab';
+export * from './lib/functions/prepareAndDownloadFile';
+export * from './lib/functions/printFile';
+export * from './lib/functions/setParamsToStorage';
+export * from './lib/functions/toClassToPlain';
+export * from './lib/functions/uniq';
+export * from './lib/functions/uniqBy';
+export * from './lib/functions/validateFormGroup';
+
+export * from './lib/models/confirmDialogData';
+export * from './lib/models/controlsConfig';
+export * from './lib/models/customOption';
+export * from './lib/models/defaultDictionary';
+export * from './lib/models/itemDialogData';
+export * from './lib/models/okTrue';
+export * from './lib/models/paginationOptions';
+
+export * from './lib/multi-option/multi-option.component';
+export * from './lib/multi-option/multi-option.module';
+
+export * from './lib/pipes/filter/filter.pipe';
+export * from './lib/pipes/filter/filter-pipe.module';
+export * from './lib/pipes/format-array-field/format-array-field.pipe';
+export * from './lib/pipes/format-array-field/format-array-field-pipe.module';
+export * from './lib/pipes/format-date/format-date.pipe';
+export * from './lib/pipes/format-date/format-date-pipe.module';
+export * from './lib/pipes/highlight/highlight.module';
+export * from './lib/pipes/highlight/highlight.pipe';
+export * from './lib/pipes/string-filter/string-filter.module';
+export * from './lib/pipes/string-filter/string-filter.pipe';
+
+export * from './lib/search-option/search-option.component';
+export * from './lib/search-option/search-option.module';
+
+export * from './lib/servises/entity.service';
+export * from './lib/servises/simple-file.service';
+export * from './lib/servises/simple-http.service';
+
+export * from './lib/default-classes';
+
+export * from './lib/types';
