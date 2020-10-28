@@ -7,6 +7,7 @@
     "build": "ng build",
     "start-lib": "ng build ng-project-helper --watch",
     "scss-bundle": "scss-bundle --config projects/ng-project-helper/scss-bundle.config.json",
+    "prod": "ng build ng-project-helper --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -10,6 +10,7 @@ export * from './concatMatrix';
 export * from './dateToString';
 export * from './genEntitiesParams';
 export * from './generateQuery';
+export * from './genParams';
 export * from './genParamsForTable';
 export * from './getFullUrl';
 export * from './getParamsFromStorage';
