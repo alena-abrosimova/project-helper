@@ -17,6 +17,7 @@ export class GetEntitiesDirective<T> implements OnChanges {
   @Input() entitiesParams: EntitiesParams;
   @Input() entitiesSearch: string;
   @Input() entitiesValue: T;
+  @Input() entitiesResult: string = 'results';
 
   @Output() getEntitiesChange: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
   @Output() countChange: EventEmitter<number> = new EventEmitter<number>();
@@ -56,7 +57,7 @@ export class GetEntitiesDirective<T> implements OnChanges {
   prepareAndEmitResponse(response: IDefaultResponse<T>): T[] {
     this.emitResponse(response);
 
-    return concatArray<T>(response.results, this.entitiesParams.iteratee, this.entitiesValue);
+    return concatArray<T>(response[this.entitiesResult], this.entitiesParams.iteratee, this.entitiesValue);
   }
 
   getDictionary(): Observable<T[]> {
