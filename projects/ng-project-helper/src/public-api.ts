@@ -58,10 +58,15 @@ export * from './lib/functions/uniq';
 export * from './lib/functions/uniqBy';
 export * from './lib/functions/validateFormGroup';
 
+export * from './lib/input-dialog/input-dialog.component';
+export * from './lib/input-dialog/input-dialog.module';
+export * from './lib/input-dialog/input-dialog.service';
+
 export * from './lib/models/confirmDialogData';
 export * from './lib/models/controlsConfig';
 export * from './lib/models/customOption';
 export * from './lib/models/defaultDictionary';
+export * from './lib/models/inputDialogData';
 export * from './lib/models/itemDialogData';
 export * from './lib/models/okTrue';
 export * from './lib/models/paginationOptions';

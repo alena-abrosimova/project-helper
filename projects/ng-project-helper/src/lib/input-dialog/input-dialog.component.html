@@ -1,0 +1,16 @@
+<mat-card fxLayout="column" fxLayoutGap="8px">
+  <div class="default-page-header" *ngIf="data?.title">{{data.title}}</div>
+  <mat-form-field>
+    <mat-label>{{data?.label}}</mat-label>
+    <input type="text" [(ngModel)]="data.value">
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutGap="12px" fxLayoutAlign="flex-end center">
+    <button mat-stroked-button color="primary" mat-dialog-close *ngIf="data?.cancelButtonTitle">
+      {{data.cancelButtonTitle}}
+    </button>
+
+    <button mat-flat-button color="accent" [mat-dialog-close]="data.value" *ngIf="data?.buttonTitle">
+      {{data.buttonTitle}}
+    </button>
+  </div>
+</mat-card>
