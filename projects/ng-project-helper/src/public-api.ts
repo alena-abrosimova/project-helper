@@ -2,6 +2,9 @@ export * from './lib/base-table/base-table.component';
 export * from './lib/base-table/base-table.module';
 export * from './lib/base-table/base-table.service';
 
+export * from './lib/clear-field/clear-field.component';
+export * from './lib/clear-field/clear-field.module';
+
 export * from './lib/confirm-dialog/confirm-dialog.component';
 export * from './lib/confirm-dialog/confirm-dialog.module';
 export * from './lib/confirm-dialog/confirm-dialog.service';
