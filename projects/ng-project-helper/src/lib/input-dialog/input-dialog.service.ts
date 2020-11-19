@@ -12,7 +12,7 @@ export class InputDialogService {
   constructor(private dialog: MatDialog) {
   }
 
-  openConfirmDialogWithResult(data: InputDialogData, config?: MatDialogConfig<InputDialogComponent>): Observable<string> {
+  openWithResult(data: InputDialogData, config?: MatDialogConfig<InputDialogComponent>): Observable<string> {
     return this.dialog.open<InputDialogComponent>(InputDialogComponent, {data, ...config})
       .afterClosed();
   }
