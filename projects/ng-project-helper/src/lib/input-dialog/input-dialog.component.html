@@ -9,7 +9,8 @@
       {{data.cancelButtonTitle}}
     </button>
 
-    <button mat-flat-button color="accent" [mat-dialog-close]="data.value" *ngIf="data?.buttonTitle">
+    <button mat-flat-button color="accent" [disabled]="!data.value" [mat-dialog-close]="data.value"
+            *ngIf="data?.buttonTitle">
       {{data.buttonTitle}}
     </button>
   </div>
