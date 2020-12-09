@@ -23,7 +23,7 @@ export class SimpleHttpService {
   }
 
   getList<T>( params: object, url: string): Observable<IDefaultResponse<T>> {
-    return this.http.get<IDefaultResponse<T>>(url, {params: generateQuery(params)});
+    return this.http.get<IDefaultResponse<T>>(`${url}/`, {params: generateQuery(params)});
   }
 
   get<T>( params: object, url: string, id: number | string, path?: string): Observable<T> {
