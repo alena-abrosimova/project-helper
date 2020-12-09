@@ -19,7 +19,7 @@ export * from './lib/directives/get-entities/get-entities.model';
 export * from './lib/directives/get-entities/get-entities.module';
 export * from './lib/directives/get-entity/get-entity.directive';
 export * from './lib/directives/get-entity/get-entity.model';
-export * from './lib/directives/save-entity/save-entity.module';
+export * from './lib/directives/get-entity/get-entity.module';
 export * from './lib/directives/save-entity/save-entity.directive';
 export * from './lib/directives/save-entity/save-entity.model';
 export * from './lib/directives/save-entity/save-entity.module';

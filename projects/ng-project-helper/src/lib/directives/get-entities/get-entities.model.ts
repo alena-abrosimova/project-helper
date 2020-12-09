@@ -1,6 +1,11 @@
-export class EntitiesParams {
+import { ClassType } from 'class-transformer/ClassTransformer';
+import { DefaultParams } from '../../default-classes';
+
+
+export class EntitiesParams<T> {
   constructor(public url: string,
-              public params?: any,
+              public cls: ClassType<T>,
+              public params?: DefaultParams,
               public field?: string,
               public iteratee?: string) {
   }

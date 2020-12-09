@@ -1,5 +1,6 @@
 import { Directive, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
+import { plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
 
 import { EntitiesParams, IDefaultResponse } from './get-entities.model';
@@ -7,19 +8,19 @@ import { isCancelSearch } from '../../functions/isCanselSearch';
 import { GetEntitiesService } from './get-entities.service';
 import { isOnChanges } from '../../functions/isOnChanges';
 import { concatArray } from '../../functions/concatArray';
+import { DefaultParams } from '../../default-classes';
 
 
 @Directive({
   selector: '[getEntities]'
 })
 export class GetEntitiesDirective<T> implements OnChanges {
-  @Input() getEntities: Observable<T[]>;
-  @Input() entitiesParams: EntitiesParams;
+  @Input() getEntities: EntitiesParams<T>;
   @Input() entitiesSearch: string;
   @Input() entitiesValue: T;
   @Input() entitiesResult: string = 'results';
 
-  @Output() getEntitiesChange: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
+  @Output() get: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
   @Output() countChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() responseChange: EventEmitter<IDefaultResponse<T>> = new EventEmitter<IDefaultResponse<T>>();
 
@@ -28,22 +29,14 @@ export class GetEntitiesDirective<T> implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (isOnChanges(changes.entitiesParams) || isOnChanges(changes.entitiesSearch) || isCancelSearch(changes.entitiesSearch)) {
-      this.getEntitiesChange.emit(this.getDictionary());
+      this.get.emit(this.getDictionary());
     }
   }
 
-  initParams() {
-    if (this.entitiesParams.params) {
-      return this.entitiesParams.params;
-    }
-
-    return {};
-  }
-
-  getDictionaryParams(): {} {
-    const params = this.initParams();
-    if (this.entitiesParams.field) {
-      params[this.entitiesParams.field] = this.entitiesSearch;
+  getDictionaryParams(): DefaultParams {
+    const params: DefaultParams = this.getEntities.params ? this.getEntities.params : {};
+    if (this.getEntities.field) {
+      params[this.getEntities.field] = this.entitiesSearch;
     }
 
     return params;
@@ -55,15 +48,16 @@ export class GetEntitiesDirective<T> implements OnChanges {
   }
 
   prepareAndEmitResponse(response: IDefaultResponse<T>): T[] {
+    response[this.entitiesResult] = plainToClass(response[this.entitiesResult], this.getEntities.cls);
     this.emitResponse(response);
 
-    return concatArray<T>(response[this.entitiesResult], this.entitiesParams.iteratee, this.entitiesValue);
+    return concatArray<T>(response[this.entitiesResult], this.getEntities.iteratee, this.entitiesValue);
   }
 
   getDictionary(): Observable<T[]> {
     const params = this.getDictionaryParams();
 
-    return this.getEntitiesService.getEntities<T>(this.entitiesParams.url, params)
+    return this.getEntitiesService.getEntities<T>(this.getEntities.url, params)
       .pipe(
         debounceTime(500),
         map((response: IDefaultResponse<T>) => this.prepareAndEmitResponse(response))

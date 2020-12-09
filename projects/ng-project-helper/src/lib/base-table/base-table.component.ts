@@ -5,16 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { plainToClass } from 'class-transformer';
+import { DefaultParams } from '../default-classes';
 
-import { PaginationOption } from '../models/paginationOptions';
-
-
-export class DefaultParams {
-  [key: string]: any;
-
-  ordering?: string;
-  paginationOption: PaginationOption;
-}
 
 @UntilDestroy()
 @Component({
