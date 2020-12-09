@@ -14,12 +14,13 @@ import { DefaultParams } from '../../default-classes';
   selector: '[getEntities]'
 })
 export class GetEntitiesDirective<T> implements OnChanges {
-  @Input() getEntities: EntitiesParams;
+  @Input() getEntities: Observable<T>;
+  @Input() entitiesParams: EntitiesParams;
   @Input() entitiesSearch: string;
   @Input() entitiesValue: T;
   @Input() entitiesResult: string = 'results';
 
-  @Output() get: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
+  @Output() getEntitiesChange: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
   @Output() countChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() responseChange: EventEmitter<IDefaultResponse<T>> = new EventEmitter<IDefaultResponse<T>>();
 
@@ -28,14 +29,14 @@ export class GetEntitiesDirective<T> implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (isOnChanges(changes.entitiesParams) || isOnChanges(changes.entitiesSearch) || isCancelSearch(changes.entitiesSearch)) {
-      this.get.emit(this.getDictionary());
+      this.getEntitiesChange.emit(this.getDictionary());
     }
   }
 
   getDictionaryParams(): DefaultParams {
-    const params: DefaultParams = this.getEntities.params ? this.getEntities.params : {};
-    if (this.getEntities.field) {
-      params[this.getEntities.field] = this.entitiesSearch;
+    const params: DefaultParams = this.entitiesParams.params ? this.entitiesParams.params : {};
+    if (this.entitiesParams.field) {
+      params[this.entitiesParams.field] = this.entitiesSearch;
     }
 
     return params;
@@ -49,13 +50,13 @@ export class GetEntitiesDirective<T> implements OnChanges {
   prepareAndEmitResponse(response: IDefaultResponse<T>): T[] {
     this.emitResponse(response);
 
-    return concatArray<T>(response[this.entitiesResult], this.getEntities.iteratee, this.entitiesValue);
+    return concatArray<T>(response[this.entitiesResult], this.entitiesParams.iteratee, this.entitiesValue);
   }
 
   getDictionary(): Observable<T[]> {
     const params = this.getDictionaryParams();
 
-    return this.getEntitiesService.getEntities<T>(this.getEntities.url, params)
+    return this.getEntitiesService.getEntities<T>(this.entitiesParams.url, params)
       .pipe(
         debounceTime(500),
         map((response: IDefaultResponse<T>) => this.prepareAndEmitResponse(response))
