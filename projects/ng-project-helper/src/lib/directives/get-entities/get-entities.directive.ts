@@ -1,6 +1,5 @@
 import { Directive, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
-import { plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
 
 import { EntitiesParams, IDefaultResponse } from './get-entities.model';
@@ -15,7 +14,7 @@ import { DefaultParams } from '../../default-classes';
   selector: '[getEntities]'
 })
 export class GetEntitiesDirective<T> implements OnChanges {
-  @Input() getEntities: EntitiesParams<T>;
+  @Input() getEntities: EntitiesParams;
   @Input() entitiesSearch: string;
   @Input() entitiesValue: T;
   @Input() entitiesResult: string = 'results';
@@ -48,7 +47,6 @@ export class GetEntitiesDirective<T> implements OnChanges {
   }
 
   prepareAndEmitResponse(response: IDefaultResponse<T>): T[] {
-    response[this.entitiesResult] = plainToClass(response[this.entitiesResult], this.getEntities.cls);
     this.emitResponse(response);
 
     return concatArray<T>(response[this.entitiesResult], this.getEntities.iteratee, this.entitiesValue);

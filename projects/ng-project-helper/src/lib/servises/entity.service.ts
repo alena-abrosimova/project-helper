@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {ClassType} from 'class-transformer/ClassTransformer';
-import {plainToClass} from 'class-transformer';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { ClassType } from 'class-transformer/ClassTransformer';
+import { plainToClass } from 'class-transformer';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import {prepareObjectToPlain} from '../functions/toClassToPlain';
-import {generateQuery} from '../functions/generateQuery';
-import {getFullUrl} from '../functions/getFullUrl';
+import { toClassToPlain } from '../functions/toClassToPlain';
+import { generateQuery } from '../functions/generateQuery';
+import { getFullUrl } from '../functions/getFullUrl';
 
 
 @Injectable({
@@ -26,14 +26,14 @@ export class EntityService {
   }
 
   createEntity<T>(item: Partial<T>, url: string, cls: ClassType<T>): Observable<T> {
-    return this.http.post(`${url}/`, prepareObjectToPlain<T>(item, cls))
+    return this.http.post(`${url}/`, toClassToPlain<T>(item, cls))
       .pipe(
         map(response => plainToClass(cls, response))
       );
   }
 
   updateEntity<T>(item: Partial<T>, id: number, url: string, cls: ClassType<T>, path?: string): Observable<T> {
-    return this.http.patch(`${getFullUrl(url, id, path)}`, prepareObjectToPlain<T>(item, cls))
+    return this.http.patch(`${getFullUrl(url, id, path)}`, toClassToPlain<T>(item, cls))
       .pipe(
         map(response => plainToClass(cls, response))
       );
