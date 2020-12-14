@@ -1,12 +1,12 @@
 import { Directive, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
+import { plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
 
 import { EntitiesParams, IDefaultResponse } from './get-entities.model';
 import { isCancelSearch } from '../../functions/isCanselSearch';
 import { GetEntitiesService } from './get-entities.service';
 import { isOnChanges } from '../../functions/isOnChanges';
-import { concatArray } from '../../functions/concatArray';
 import { DefaultParams } from '../../default-classes';
 
 
@@ -14,9 +14,8 @@ import { DefaultParams } from '../../default-classes';
   selector: '[entitiesParams]'
 })
 export class GetEntitiesDirective<T> implements OnChanges {
-  @Input() entitiesParams: EntitiesParams;
+  @Input() entitiesParams: EntitiesParams<T>;
   @Input() entitiesSearch: string;
-  @Input() entitiesValue: T;
   @Input() entitiesResult: string = 'results';
 
   @Output() getEntities: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
@@ -47,9 +46,12 @@ export class GetEntitiesDirective<T> implements OnChanges {
   }
 
   prepareAndEmitResponse(response: IDefaultResponse<T>): T[] {
+    if (this.entitiesParams.cls) {
+      response[this.entitiesResult] = plainToClass(this.entitiesParams.cls, response[this.entitiesResult]);
+    }
     this.emitResponse(response);
 
-    return concatArray<T>(response[this.entitiesResult], this.entitiesParams.iteratee, this.entitiesValue);
+    return response[this.entitiesResult];
   }
 
   getDictionary(): Observable<T[]> {
