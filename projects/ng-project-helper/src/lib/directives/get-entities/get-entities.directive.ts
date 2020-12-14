@@ -11,16 +11,15 @@ import { DefaultParams } from '../../default-classes';
 
 
 @Directive({
-  selector: '[getEntities]'
+  selector: '[entitiesParams]'
 })
 export class GetEntitiesDirective<T> implements OnChanges {
-  @Input() getEntities: Observable<T>;
   @Input() entitiesParams: EntitiesParams;
   @Input() entitiesSearch: string;
   @Input() entitiesValue: T;
   @Input() entitiesResult: string = 'results';
 
-  @Output() getEntitiesChange: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
+  @Output() getEntities: EventEmitter<Observable<T[]>> = new EventEmitter<Observable<T[]>>();
   @Output() countChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() responseChange: EventEmitter<IDefaultResponse<T>> = new EventEmitter<IDefaultResponse<T>>();
 
@@ -29,7 +28,7 @@ export class GetEntitiesDirective<T> implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (isOnChanges(changes.entitiesParams) || isOnChanges(changes.entitiesSearch) || isCancelSearch(changes.entitiesSearch)) {
-      this.getEntitiesChange.emit(this.getDictionary());
+      this.getEntities.emit(this.getDictionary());
     }
   }
 
