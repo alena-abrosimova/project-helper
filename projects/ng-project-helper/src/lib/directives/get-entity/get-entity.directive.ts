@@ -6,13 +6,12 @@ import { isOnChanges } from '../../functions/isOnChanges';
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[getEntity]'
+  selector: '[entityParams]'
 })
 export class GetEntityDirective<T> implements OnChanges {
-  @Input() getEntity: Observable<T>;
   @Input() entityParams: EntityApiParams;
 
-  @Output() getEntityChange: EventEmitter<Observable<T>> = new EventEmitter<Observable<T>>();
+  @Output() getEntity: EventEmitter<Observable<T>> = new EventEmitter<Observable<T>>();
   @Output() getEntityResponse: EventEmitter<T> = new EventEmitter<T>();
 
   constructor(private getEntityService: GetEntityService) {
@@ -20,7 +19,7 @@ export class GetEntityDirective<T> implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (isOnChanges(changes.entityParams)) {
-      this.getEntityChange.emit(this._getEntity());
+      this.getEntity.emit(this._getEntity());
     }
   }
 
