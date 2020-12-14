@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input, Optional, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Inject, Input, Optional } from '@angular/core';
 import { MAT_OPTION_PARENT_COMPONENT, MatOptgroup, MatOption, MatOptionParentComponent } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
-import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { CustomOption } from '../models/customOption';
@@ -15,9 +14,8 @@ import { CustomOption } from '../models/customOption';
 export class SearchOptionComponent<T> extends MatOption implements CustomOption<T> {
   @Input() placeholder: string = 'Поиск...';
   @Input() withAdd: boolean = false;
-  @Input() control: FormControl;
-  @Output() controlChange: EventEmitter<FormControl> = new EventEmitter<FormControl>();
 
+  query: string = '';
   value: T;
 
   itemSubject: Subject<T> = new Subject<T>();

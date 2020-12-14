@@ -7,7 +7,7 @@ import { FlexModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
 import { SearchOptionComponent } from './search-option.component';
@@ -27,7 +27,8 @@ import { StopPropagationModule } from '../directives/stop-propagation/stop-propa
     MatTooltipModule,
     ReactiveFormsModule,
     MatSelectModule,
-    StopPropagationModule
+    StopPropagationModule,
+    FormsModule
   ],
   exports: [SearchOptionComponent]
 })

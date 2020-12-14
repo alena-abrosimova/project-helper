@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
   <mat-form-field class="simple-field" appearance="outline" fxFlex>
-    <input matInput type="text" [placeholder]="placeholder" [formControl]="control" stopPropagation
+    <input matInput type="text" [placeholder]="placeholder" [(ngModel)]="query" stopPropagation
            autocomplete="nope" (keydown.space)="$event.stopPropagation()">
     <mat-icon matPrefix color="primary">search</mat-icon>
-    <button mat-icon-button matSuffix color="primary" *ngIf="control.value" (click)="control.setValue('')">
+    <button mat-icon-button matSuffix color="primary" *ngIf="!!query" (click)="query = ''">
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
