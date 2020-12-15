@@ -40,4 +40,15 @@ export class BaseForm {
     this.control(name).reset();
     this.control(name).markAsTouched();
   }
+
+  enable(name: string): void {
+    this.control(name).enable();
+  }
+
+  disable(name: string, clear: boolean = false): void {
+    this.control(name).disable();
+    if (clear) {
+      this.control(name).reset();
+    }
+  }
 }
