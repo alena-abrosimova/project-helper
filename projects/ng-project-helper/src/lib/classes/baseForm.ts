@@ -45,6 +45,14 @@ export class BaseForm {
     this.control(name).enable();
   }
 
+  enabled(name: string): boolean {
+    return this.control(name).enabled;
+  }
+
+  disabled(name: string): boolean {
+    return this.control(name).disabled;
+  }
+
   disable(name: string, clear: boolean = false): void {
     this.control(name).disable();
     if (clear) {
