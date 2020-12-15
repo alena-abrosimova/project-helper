@@ -12,6 +12,18 @@ export class BaseForm {
     return this.formBuilder.group(config);
   }
 
+  formValid(): boolean {
+    return this.cardForm.valid;
+  }
+
+  formValue(): any {
+    return this.cardForm.value;
+  }
+
+  formPristine(): boolean {
+    return this.cardForm.pristine;
+  }
+
   control(name: string): AbstractControl {
     return this.cardForm.get(name);
   }
