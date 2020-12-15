@@ -20,6 +20,10 @@ export class BaseForm {
     return !!this.control(name).value;
   }
 
+  canClear(name: string): boolean {
+    return !!this.control(name).value && this.enabled(name);
+  }
+
   errors(name: string): ValidationErrors {
     return this.control(name).errors;
   }
