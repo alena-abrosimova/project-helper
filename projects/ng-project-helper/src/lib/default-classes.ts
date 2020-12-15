@@ -1,4 +1,4 @@
-import { PaginationOption } from './models/paginationOptions';
+import { PaginationOption } from './classes/paginationOptions';
 
 
 export class DefaultStringChoices<T> {

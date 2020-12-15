@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { InputDialogData } from '../models/inputDialogData';
+import { InputDialogData } from '../classes/inputDialogData';
 
 @Component({
   selector: 'input-dialog',

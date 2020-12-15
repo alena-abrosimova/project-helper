@@ -3,7 +3,7 @@ import { MAT_OPTION_PARENT_COMPONENT, MatOptgroup, MatOption, MatOptionParentCom
 import { MatSelect } from '@angular/material/select';
 import { Subject } from 'rxjs';
 
-import { CustomOption } from '../models/customOption';
+import { CustomOption } from '../classes/customOption';
 
 
 @Component({

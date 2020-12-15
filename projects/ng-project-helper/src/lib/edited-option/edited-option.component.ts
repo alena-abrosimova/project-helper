@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { CustomOption } from '../models/customOption';
+import { CustomOption } from '../classes/customOption';
 
 
 @Component({

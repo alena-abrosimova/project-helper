@@ -1,6 +1,6 @@
 import { Component, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmDialogData } from '../models/confirmDialogData';
+import { ConfirmDialogData } from '../classes/confirmDialogData';
 
 @Component({
   selector: 'confirm-dialog',

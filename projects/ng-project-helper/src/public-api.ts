@@ -66,14 +66,15 @@ export * from './lib/input-dialog/input-dialog.component';
 export * from './lib/input-dialog/input-dialog.module';
 export * from './lib/input-dialog/input-dialog.service';
 
-export * from './lib/models/confirmDialogData';
-export * from './lib/models/controlsConfig';
-export * from './lib/models/customOption';
-export * from './lib/models/defaultDictionary';
-export * from './lib/models/inputDialogData';
-export * from './lib/models/itemDialogData';
-export * from './lib/models/okTrue';
-export * from './lib/models/paginationOptions';
+export * from './lib/classes/baseForm';
+export * from './lib/classes/confirmDialogData';
+export * from './lib/classes/controlsConfig';
+export * from './lib/classes/customOption';
+export * from './lib/classes/defaultDictionary';
+export * from './lib/classes/inputDialogData';
+export * from './lib/classes/itemDialogData';
+export * from './lib/classes/okTrue';
+export * from './lib/classes/paginationOptions';
 
 export * from './lib/multi-option/multi-option.component';
 export * from './lib/multi-option/multi-option.module';

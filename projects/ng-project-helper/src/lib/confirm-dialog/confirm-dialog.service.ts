@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog/dialog-ref';
 import { Observable } from 'rxjs';
 
 import { ConfirmDialogComponent } from './confirm-dialog.component';
-import { ConfirmDialogData } from '../models/confirmDialogData';
+import { ConfirmDialogData } from '../classes/confirmDialogData';
 
 
 export const DeleteConfirmDialogData: ConfirmDialogData

@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
 import { InputDialogComponent } from './input-dialog.component';
-import { InputDialogData } from '../models/inputDialogData';
+import { InputDialogData } from '../classes/inputDialogData';
 
 @Injectable({
   providedIn: 'root'
