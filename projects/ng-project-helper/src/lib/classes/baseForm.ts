@@ -5,23 +5,20 @@ import { ControlsConfig } from './controlsConfig';
 export class BaseForm {
   cardForm: FormGroup;
 
+  get formValid(): boolean {
+    return this.cardForm.valid;
+  }
+  get formValue(): any {
+    return this.cardForm.value;
+  }
+  get formPristine(): boolean {
+    return this.cardForm.pristine;
+  }
   constructor(private formBuilder: FormBuilder) {
   }
 
   initForm(config: ControlsConfig): FormGroup {
     return this.formBuilder.group(config);
-  }
-
-  formValid(): boolean {
-    return this.cardForm.valid;
-  }
-
-  formValue(): any {
-    return this.cardForm.value;
-  }
-
-  formPristine(): boolean {
-    return this.cardForm.pristine;
   }
 
   control(name: string): AbstractControl {
