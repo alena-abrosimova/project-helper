@@ -9,7 +9,10 @@ import { CustomOption } from '../classes/customOption';
 @Component({
   selector: 'search-option',
   templateUrl: './search-option.component.html',
-  providers: [{provide: CustomOption, useExisting: SearchOptionComponent}]
+  providers: [
+    {provide: CustomOption, useExisting: SearchOptionComponent},
+    {provide: MatOption, useExisting: SearchOptionComponent}
+  ],
 })
 export class SearchOptionComponent<T> extends MatOption implements CustomOption<T> {
   @Input() placeholder: string = 'Поиск...';
@@ -21,7 +24,7 @@ export class SearchOptionComponent<T> extends MatOption implements CustomOption<
   itemSubject: Subject<T> = new Subject<T>();
 
   get noOptions(): boolean {
-    return this.parent instanceof MatSelect ? !this.parent.options.length : false;
+    return this.parent instanceof MatSelect ? this.parent.options.length === 1 : false;
   }
 
   constructor(elementRef: ElementRef<HTMLElement>,
