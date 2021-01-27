@@ -19,7 +19,7 @@ export class SaveEntityDirective<T> implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (isOnChanges(changes.saveParams)) {
+    if (isOnChanges(changes.saveEntity)) {
       this.getSavedEntity.emit(this._saveEntity());
     }
   }
