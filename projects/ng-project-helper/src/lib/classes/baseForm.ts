@@ -17,6 +17,14 @@ export class BaseForm {
     return this.cardForm.pristine;
   }
 
+  get formEnabled(): boolean {
+    return this.cardForm.enabled;
+  }
+
+  get formDisabled(): boolean {
+    return this.cardForm.disabled;
+  }
+
   constructor(private formBuilder: FormBuilder) {
   }
 
