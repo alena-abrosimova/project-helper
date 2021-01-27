@@ -10,29 +10,28 @@ import { SaveEntityParams } from './save-entity.model';
   selector: '[saveEntity]'
 })
 export class SaveEntityDirective<T> implements OnChanges {
-  @Input() saveEntity: Observable<T>;
-  @Input() saveParams: SaveEntityParams<T>;
+  @Input() saveEntity: SaveEntityParams<T>;
 
-  @Output() saveEntityChange: EventEmitter<Observable<T>> = new EventEmitter<Observable<T>>();
-  @Output() saveEntityResponse: EventEmitter<T> = new EventEmitter<T>();
+  @Output() getSavedEntity: EventEmitter<Observable<T>> = new EventEmitter<Observable<T>>();
+  @Output() saveResponse: EventEmitter<T> = new EventEmitter<T>();
 
   constructor(private saveService: SaveEntityService<T>) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (isOnChanges(changes.saveParams)) {
-      this.saveEntityChange.emit(this._saveEntity());
+      this.getSavedEntity.emit(this._saveEntity());
     }
   }
 
   _saveEntity(): Observable<T> {
-    return this.checkItemAndSave(this.saveParams.item, this.saveParams.idKey)
+    return this.checkItemAndSave(this.saveEntity.item, this.saveEntity.idKey)
       .pipe(
-        tap(response => this.saveEntityResponse.emit(response))
+        tap(response => this.saveResponse.emit(response))
       );
   }
 
   checkItemAndSave(item: T, idKey: string): Observable<T> {
-    return idKey && item[idKey] ? this.saveService.update(this.saveParams) : this.saveService.create(this.saveParams);
+    return idKey && item[idKey] ? this.saveService.update(this.saveEntity) : this.saveService.create(this.saveEntity);
   }
 }
