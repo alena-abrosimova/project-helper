@@ -7,7 +7,7 @@ export class EntityParams {
 
 export class EntityApiParams<T> {
   constructor(public url: string,
-              public id: number,
+              public id: number | string,
               public cls?: ClassType<T>,
               public path?: string,
               public params?: EntityParams) {
