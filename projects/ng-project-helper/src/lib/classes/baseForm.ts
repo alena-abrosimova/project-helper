@@ -8,12 +8,15 @@ export class BaseForm {
   get formValid(): boolean {
     return this.cardForm.valid;
   }
+
   get formValue(): any {
     return this.cardForm.value;
   }
+
   get formPristine(): boolean {
     return this.cardForm.pristine;
   }
+
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -71,5 +74,24 @@ export class BaseForm {
     if (clear) {
       this.control(name).reset();
     }
+  }
+
+  resetForm(): void {
+    this.cardForm.reset();
+  }
+
+  enableForm(): void {
+    this.cardForm.enable();
+  }
+
+  disableForm<T>(clearValue?: T): void {
+    this.cardForm.disable();
+    if (clearValue) {
+      this.cardForm.patchValue(clearValue);
+    }
+  }
+
+  patchForm<T>(value: T): void {
+    this.cardForm.patchValue(value);
   }
 }
