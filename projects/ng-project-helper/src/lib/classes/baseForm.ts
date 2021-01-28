@@ -21,6 +21,10 @@ export class BaseForm {
     return this.cardForm.value;
   }
 
+  get formRawValue(): any {
+    return this.cardForm.getRawValue();
+  }
+
   get formPristine(): boolean {
     return this.cardForm.pristine;
   }
