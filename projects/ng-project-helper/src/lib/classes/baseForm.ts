@@ -1,6 +1,14 @@
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors } from '@angular/forms';
 import { ControlsConfig } from './controlsConfig';
 
+class FormOpts {
+  onlySelf?: boolean;
+  emitEvent?: boolean;
+}
+
+class FormOnlySelfOpts {
+  onlySelf?: boolean;
+}
 
 export class BaseForm {
   cardForm: FormGroup;
@@ -56,17 +64,17 @@ export class BaseForm {
     return this.control(name).value;
   }
 
-  setValue<T>(name: string, value: T): void {
-    this.control(name).setValue(value);
+  setValue<T>(name: string, value: T, opts?: FormOpts): void {
+    this.control(name).setValue(value, opts);
   }
 
-  clear(name: string): void {
-    this.control(name).reset();
-    this.control(name).markAsTouched();
+  clear(name: string, opts?: FormOpts): void {
+    this.control(name).reset(opts);
+    this.control(name).markAsTouched(opts);
   }
 
-  enable(name: string): void {
-    this.control(name).enable();
+  enable(name: string, opts?: FormOpts): void {
+    this.control(name).enable(opts);
   }
 
   enabled(name: string): boolean {
@@ -77,29 +85,53 @@ export class BaseForm {
     return this.control(name).disabled;
   }
 
-  disable(name: string, clear: boolean = false): void {
-    this.control(name).disable();
+  disable(name: string, clear: boolean = false, opts?: FormOpts): void {
+    this.control(name).disable(opts);
     if (clear) {
-      this.control(name).reset();
+      this.control(name).reset(null, opts);
     }
   }
 
-  resetForm(): void {
-    this.cardForm.reset();
+  resetForm<T>(clearValue?: T, opts?: FormOpts): void {
+    this.cardForm.reset(clearValue, opts);
   }
 
-  enableForm(): void {
-    this.cardForm.enable();
+  enableForm(opts?: FormOpts): void {
+    this.cardForm.enable(opts);
   }
 
-  disableForm<T>(clearValue?: T): void {
-    this.cardForm.disable();
+  disableForm<T>(clearValue?: T, opts?: FormOpts): void {
+    this.cardForm.disable(opts);
     if (clearValue) {
-      this.cardForm.patchValue(clearValue);
+      this.cardForm.patchValue(clearValue, opts);
     }
   }
 
-  patchForm<T>(value: T): void {
-    this.cardForm.patchValue(value);
+  patchForm<T>(value: T, opts?: FormOpts): void {
+    this.cardForm.patchValue(value, opts);
+  }
+
+  markFormAsPristine(opts?: FormOnlySelfOpts): void {
+    this.cardForm.markAsPristine(opts);
+  }
+
+  markFormAsDirty(opts?: FormOnlySelfOpts): void {
+    this.cardForm.markAsDirty(opts);
+  }
+
+  markFormAsTouched(opts?: { onlySelf?: boolean; }): void {
+    this.cardForm.markAsTouched(opts);
+  }
+
+  markFormAsUntouched(opts?: FormOnlySelfOpts): void {
+    this.cardForm.markAsUntouched(opts);
+  }
+
+  markFormAllAsTouched(): void {
+    this.cardForm.markAllAsTouched();
+  }
+
+  markFormAsPending(opts?: FormOpts): void {
+    this.cardForm.markAsPending(opts);
   }
 }
