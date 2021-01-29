@@ -12,8 +12,12 @@ export class GetEntitiesService {
   constructor(private http: HttpClient) {
   }
 
-  getEntities<T>(url: string, params?: any): Observable<IDefaultResponse<T>> {
+  getIEntities<T>(url: string, params?: any): Observable<IDefaultResponse<T>> {
     return this.http
       .get<IDefaultResponse<T>>(`${url}/`, {params: generateQuery(params)});
+  }
+
+  getEntities<T>(url: string, params?: any): Observable<T[]> {
+    return this.http.get<T[]>(`${url}/`, {params: generateQuery(params)});
   }
 }
