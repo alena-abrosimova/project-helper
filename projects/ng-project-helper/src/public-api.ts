@@ -84,6 +84,10 @@ export * from './lib/classes/paginationOptions';
 export * from './lib/multi-option/multi-option.component';
 export * from './lib/multi-option/multi-option.module';
 
+export * from './lib/pipes/as-form-control/as-form-control.module';
+export * from './lib/pipes/as-form-control/as-form-control.pipe';
+export * from './lib/pipes/as-form-group/as-form-group.module';
+export * from './lib/pipes/as-form-group/as-form-group.pipe';
 export * from './lib/pipes/filter/filter.pipe';
 export * from './lib/pipes/filter/filter-pipe.module';
 export * from './lib/pipes/format-array-field/format-array-field.pipe';
