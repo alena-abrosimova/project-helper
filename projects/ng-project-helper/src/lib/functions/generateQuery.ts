@@ -2,7 +2,10 @@ import { HttpParams } from '@angular/common/http';
 import { clearNull } from './clearNull';
 
 
-export function generateQuery(params: object): HttpParams {
+/**
+ * Метод для получения HttpParams из объекта
+ */
+export function generateQuery<T>(params: Partial<T>): HttpParams {
   if (!params) {
     return null;
   }
