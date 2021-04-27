@@ -9,6 +9,14 @@ import { SaveEntityParams } from './save-entity.model';
 @Directive({
   selector: '[saveEntity]'
 })
+/** Директива для отправки POST/PATCH-запроса на сервер и получения объекта класса в ответ (по дефолту).
+ * - saveEntity - принимает в себя параметры для запроса/сериализации,
+ * без этого параметра запрос не будет отправлен. Для "перезапроса" достаточно в компоненте
+ * присвоить переменной для saveEntity новый объект класса SaveEntityParams<T>.
+ *
+ * - getSavedEntity() - отдает Observable с объектом
+ * - saveResponse() - отдает сам объект
+ */
 export class SaveEntityDirective<T> implements OnChanges {
   @Input() saveEntity: SaveEntityParams<T>;
 

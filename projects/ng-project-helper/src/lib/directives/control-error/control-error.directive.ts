@@ -9,6 +9,12 @@ import { isOnChanges } from '../../functions/isOnChanges';
 @Directive({
   selector: '[controlError]'
 })
+/** Директива для `<mat-hint></mat-hint>`, чтобы показывать русифицированные ошибки у контролов
+ * - controlError - принимает объект содержащий ошибки контрола
+ * - touched - принимает в себя статус "трогал ли пользователь контрол в UI"
+ *
+ * На будущее - неплохо бы ControlErrorConfig сделать инжектируемым и под это переделать метод getKeyDescription
+ */
 export class ControlErrorDirective implements OnChanges {
   @Input() controlError: ValidationErrors;
   @Input() touched: boolean;

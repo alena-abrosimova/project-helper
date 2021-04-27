@@ -5,6 +5,10 @@ import { MatSelect } from '@angular/material/select';
 @Directive({
   selector: '[defaultEqual]'
 })
+/** Директива для `<mat-select></mat-select>`,
+ * заменяет [compareWith]="defaultEqual" и объявление defaultEqual в компоненте.
+ * Подходит для случаев, когда в <mat-option [value]="..."> вкладывается объект
+ */
 export class DefaultEqualDirective<T> {
 
   constructor(@Host() private select: MatSelect) {

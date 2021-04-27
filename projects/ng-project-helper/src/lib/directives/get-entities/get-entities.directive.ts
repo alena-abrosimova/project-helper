@@ -9,7 +9,20 @@ import { GetEntitiesService } from './get-entities.service';
 import { isOnChanges } from '../../functions/isOnChanges';
 import { DefaultParams } from '../../default-classes';
 
-
+/** Директива для отправки GET-запроса на сервер и получения списка объектов класса в ответ.
+ * - entitiesParams - принимает в себя параметры для запроса/сериализации/быстрого поиска,
+ * без этого параметра запрос не будет отправлен. Для "перезапроса" достаточно в компоненте
+ * присвоить переменной для entitiesParams новый объект класса EntitiesParams<T>.
+ * - entitiesSearch - принимает в себя строковое значение для поиска через запрос
+ * - entitiesResult - принимает в себя строковое название "свойства",
+ * которое хранит в себе список объектов в пришедшем ответе с бэкенда.
+ * По умолчанию это свойство 'results', если вложить null - список будет взят напрямую из ответа.
+ *
+ * - getEntities() - отдает Observable с списком
+ * - countChange() - отдает значение из поля 'count' по умлчанию
+ * - iResponseChange() - отдает интерфейс с списком
+ * - responseChange() - отдает сам список
+ */
 @Directive({
   selector: '[entitiesParams]'
 })
