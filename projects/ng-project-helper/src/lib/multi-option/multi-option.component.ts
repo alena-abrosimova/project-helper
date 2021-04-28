@@ -8,6 +8,10 @@ import { AbstractControl } from '@angular/forms';
   selector: 'multi-option',
   templateUrl: './multi-option.component.html'
 })
+
+/** Компонент для добавления в mat-select с атрибутом multiselect кнопок
+ * **Выделить всё / Снять всё / Выбрать** в конец списка mat-option
+ */
 export class MultiOptionComponent extends MatOption {
   parent: MatSelect;
 
