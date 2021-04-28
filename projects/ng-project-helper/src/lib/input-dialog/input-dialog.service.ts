@@ -11,7 +11,9 @@ import { InputDialogData } from '../classes/inputDialogData';
 export class InputDialogService {
   constructor(private dialog: MatDialog) {
   }
-
+  /**
+   * Метод открывает диалог, передает в него редактируемое значение и после закрытия отдает уже измененное значение.
+   */
   openWithResult(data: InputDialogData, config?: MatDialogConfig<InputDialogComponent>): Observable<string> {
     return this.dialog.open<InputDialogComponent>(InputDialogComponent, {data, ...config})
       .afterClosed();
