@@ -16,8 +16,9 @@ const rusRangeLabel = (page: number, pageSize: number, length: number) => {
 
   return `${startIndex + 1} - ${endIndex} из ${length}`;
 };
-
-
+/**
+ * Возващает русифицированый MatPaginatorIntl.
+ */
 export function getRusPaginatorIntl(): MatPaginatorIntl {
   const paginatorIntl = new MatPaginatorIntl();
 

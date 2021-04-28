@@ -1,6 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
 
-
+/**
+ * Метод для скачивания файла, полученного с сервера
+ */
 export function prepareAndDownloadFile(response: HttpResponse<Blob>, type: string, filenameRegex: RegExp = /"(.*?)"/): Blob {
   const contentDispositionHeader = decodeURIComponent(response.headers.get('content-disposition'));
   const splitContentDispositionHeader = contentDispositionHeader.split('; ');
