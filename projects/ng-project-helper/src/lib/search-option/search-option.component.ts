@@ -14,6 +14,12 @@ import { CustomOption } from '../classes/customOption';
     {provide: MatOption, useExisting: SearchOptionComponent}
   ],
 })
+/** Компонент для добавления в начало списка mat-option c полем для ввода строки и кнопкой "Добавить",
+ * при клике на которую в itemSubject передается значение из value.
+ * Удобно обрабатывать директивой и уже непосредственно в приложении
+ * писать свою логику - например вызывать необходимый диалог с формой добавлениея;
+ * А также удобно для фильтрации списка через сервер
+ */
 export class SearchOptionComponent<T> extends MatOption implements CustomOption<T> {
   @Input() placeholder: string = 'Поиск...';
   @Input() withAdd: boolean = false;
