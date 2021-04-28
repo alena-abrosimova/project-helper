@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'highlight'
 })
 export class HighlightPipe implements PipeTransform {
+  /**
+   * Возвращает строку с тегом <mark> вокруг найденного query
+   */
 
   transform(text: string, query: string): string {
     return text && query && typeof text === 'string' ? this.getHighlightedValue(text, query) : text;

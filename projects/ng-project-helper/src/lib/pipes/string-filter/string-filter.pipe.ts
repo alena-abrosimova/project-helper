@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'stringFilter'
 })
 export class StringFilterPipe implements PipeTransform {
+  /**
+   * Возвращает отфильтрованный список (для текстового поиска по определенному ключу)
+   */
   transform<T, K extends keyof T>(array: T[], filter: string, key: K): T[] {
     return array && filter && key ? array.filter(item => this.checkItem(item[key], filter)) : array;
   }
