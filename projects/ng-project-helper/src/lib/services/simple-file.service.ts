@@ -18,7 +18,9 @@ import { plainToClass } from 'class-transformer';
 export class SimpleFileService {
 
   constructor(private http: HttpClient) { }
-
+  /** Метод для скачивания файла по уже готовому URL
+   * - fileUrl: ожидает строку с URL адресом,
+   */
   downloadFileByUrl(fileUrl: string): void {
     const anchor = document.createElement('a');
     document.body.appendChild(anchor);
@@ -32,6 +34,11 @@ export class SimpleFileService {
     anchor.remove();
   }
 
+  /** Метод для скачивания файла, пришедшего с сервера, возвращает Blob
+   * - url: ожидает строку с URL адресом,
+   * - type: ожидает тип для Blob,
+   * - filters: ожидает параметры фильтрации, необязательное,
+   */
   downloadFile(url: string, type: string, filters?: object): Observable<Blob> {
     const params: HttpParams = generateQuery(filters);
 
@@ -41,7 +48,10 @@ export class SimpleFileService {
         map(response => prepareAndDownloadFile(response, type))
       );
   }
-
+  /** Метод для получения ссылки на файл, пришедшего с сервера, возвращает string
+   * - url: ожидает строку с URL адресом,
+   * - filters: ожидает параметры фильтрации, необязательное,
+   */
   openFileInCard(url: string, filters?: object): Observable<string> {
     const params: HttpParams = generateQuery(filters);
 
@@ -51,7 +61,11 @@ export class SimpleFileService {
         map(response => openFileInCard(response))
       );
   }
-
+  /** Метод для открытия в новом окне файла, пришедшего с сервера, возвращает Blob
+   * - url: ожидает строку с URL адресом,
+   * - type: ожидает тип для Blob,
+   * - filters: ожидает параметры фильтрации, необязательное,
+   */
   openFileInNewTab(url: string, type: string, filters?: object): Observable<Blob> {
     const params: HttpParams = generateQuery(filters);
 
@@ -61,7 +75,11 @@ export class SimpleFileService {
         map(response => openFileInNewTab(response, type))
       );
   }
-
+  /** Метод для вывода на печать файла, пришедшего с сервера, возвращает Blob
+   * - url: ожидает строку с URL адресом,
+   * - type: ожидает тип для Blob,
+   * - filters: ожидает параметры фильтрации, необязательное,
+   */
   printFile(url: string, type: string, filters?: object): Observable<Blob> {
     const params: HttpParams = generateQuery(filters);
 
@@ -71,7 +89,11 @@ export class SimpleFileService {
         map(response => printFile(response, type))
       );
   }
-
+  /** Метод для вывода на печать файла, пришедшего с сервера, возвращает T
+   * - url: ожидает строку с URL адресом,
+   * - formData: ожидает FormData, где будет File и дополнительные данные для запроса,
+   * - cls: ожидает класс для сериализации объекта, который придет в ответ, необязательное,
+   */
   uploadFile<T>(url: string, formData: FormData, cls?: ClassType<T>): Observable<T> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
