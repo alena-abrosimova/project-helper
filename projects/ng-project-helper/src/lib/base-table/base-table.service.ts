@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ConfirmDialogService } from '../confirm-dialog/confirm-dialog.service';
-import { SimpleHttpService } from '../servises/simple-http.service';
+import { SimpleHttpService } from '../services/simple-http.service';
 
 
 @Injectable({

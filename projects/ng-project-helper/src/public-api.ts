@@ -102,9 +102,9 @@ export * from './lib/pipes/string-filter/string-filter.pipe';
 export * from './lib/search-option/search-option.component';
 export * from './lib/search-option/search-option.module';
 
-export * from './lib/servises/entity.service';
-export * from './lib/servises/simple-file.service';
-export * from './lib/servises/simple-http.service';
+export * from './lib/services/entity.service';
+export * from './lib/services/simple-file.service';
+export * from './lib/services/simple-http.service';
 
 export * from './lib/default-classes';
 
